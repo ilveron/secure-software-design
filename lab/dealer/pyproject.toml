@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "dealer"
+version = "0.1.0"
+description = ""
+authors = ["ilveron <alessandromonetti@outlook.it>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+typeguard = "^4.1.5"
+valid8 = "^5.1.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+coverage = "^7.3.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

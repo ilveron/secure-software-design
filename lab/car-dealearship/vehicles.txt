@@ -1,0 +1,5 @@
+car;CW223KM;Ford;Focus;2500.0
+car;EC355VN;Fiat;Grande Punto;3500.0
+motorbike;EA00123;Yamaha;MT-09;7500.0
+motorbike;FB69696;Honda;CBR 1000RR;24000.0
+car;GG123WP;Audi;RS6;120000.0

@@ -1,0 +1,16 @@
+Write a TUI to manage a music archive, and specifically the list of songs.
+
+For a song we are interested in the author, the title, the genre and the duration. From the discussion with the expert
+domain we understood that the author can be represented by strings of letters, numbers and spaces; the length of
+such strings doesn’t exceed 100 chars. The same restrictions apply to titles and genres. The duration must be
+shown in minutes and seconds (eg. 3:25 for 3 minutes and 25 seconds); choose the internal representation.
+
+The application must allow to
+    ● show all songs
+    ● add and remove songs
+    ● show the list of authors
+    ● restrict the visualization to the songs of a given author
+    ● sort songs according to several criteria (of your choice)
+
+Data must be saved automatically on disc in a file default.csv in the root of the project and loaded when the
+application starts. We expect tests, too… should I still say it?!?
