@@ -17,7 +17,7 @@ class Archive:
         return len(self.__songs)
 
     def song(self, index: int) -> Song:
-        validate('index', index, min_value=0, max_value=self.songs()-1)
+        validate('index', index, min_value=0, max_value=self.songs() - 1)
         # possiamo tranquillamente restituire l'oggetto della lista perché è immutabile
         return self.__songs[index]
 

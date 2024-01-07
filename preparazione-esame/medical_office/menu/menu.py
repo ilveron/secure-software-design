@@ -67,11 +67,11 @@ class Menu:
         return bool(list(filter(lambda e: e.is_exit, self.__entries)))
 
     def __print(self) -> None:
-        # length = len(str(self.description))
-        # fmt = '***{}{}{}***'
-        # print(fmt.format('*', '*' * length, '*'))
-        # print(fmt.format(' ', self.description.value, ' '))
-        # print(fmt.format('*', '*' * length, '*'))
+        length = len(str(self.description))
+        fmt = '***{}{}{}***'
+        print(fmt.format('*', '*' * length, '*'))
+        print(fmt.format(' ', self.description.value, ' '))
+        print(fmt.format('*', '*' * length, '*'))
         print(self.description.value)
         self.auto_select()
         for entry in self.__entries:

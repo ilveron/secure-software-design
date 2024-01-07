@@ -78,6 +78,7 @@ class Duration:
     @staticmethod
     def parse(value: str) -> 'Duration':
         res = Duration.__parse_pattern.fullmatch(value)
+        validate('value', res)
         minutes = res.group("minutes")
         seconds = res.group("seconds")
         return Duration.create(int(minutes), int(seconds))

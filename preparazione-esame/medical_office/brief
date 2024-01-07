@@ -1,0 +1,16 @@
+Write a TUI to manage a medical office, and specifically the list of reservations.
+
+For a reservation we are interested in the name of the patient, the scheduled time, the type of visit and the
+cost. From the discussion with the expert domain we understood that the patient can be represented by
+strings of letters, numbers and spaces; the length of such strings doesn’t exceed 100 chars. The same
+restrictions apply to the type of visit. The scheduled time must be shown in hours and minutes (eg. 15:20 for
+20 minutes past 15); choose the internal representation. The cost must be represented in euro, with two
+decimal digits (and definitely it’s not a negative number).
+
+The application must allow to
+●show all reservations, always sorted by ascending scheduled time
+●add and remove reservations
+●restrict the visualization to reservations scheduled after a given time
+
+Data must be saved automatically on disc in a file default.csv in the root of the project and loaded when the
+application starts. We expect tests, too… should I still say it?!?

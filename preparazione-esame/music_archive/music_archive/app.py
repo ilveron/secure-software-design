@@ -51,7 +51,17 @@ class App:
         print('Song added!')
 
     def __remove_song(self) -> None:
-        pass
+        def builder(value: str) -> int:
+            validate(value, int(value), min_value=0, max_value=self.__archive.songs())
+            return int(value)
+
+        index = self.__read("Index (0 to cancel)", builder)
+        if index == 0:
+            print("Cancelled!")
+            return
+        self.__archive.remove_song(index - 1)
+        self.__save()
+        print("Song removed!")
 
     def __sort_by_author(self) -> None:
         self.__archive.sort_by_author()
