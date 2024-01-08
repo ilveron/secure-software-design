@@ -1,0 +1,26 @@
+<html>
+<head>
+    <script>
+        fetch("http://localhost:8000/api/v1/")
+        .then(response => response.json())
+        .then(data => {
+            let ul = document.createElement('ul');
+            data.forEach(record => {
+                let li = document.createElement('li');
+                li.innerHTML = record.title;
+                ul.appendChild(li);
+            });
+            let content = document.getElementById('content');
+            content.innerHTML = '';
+            content.appendChild(ul);
+        })
+    </script>
+</head>
+
+<body>
+    <h1>Posts</h1>
+    <div id="content">
+        Loading content...
+    </div>
+</body>
+</html>
