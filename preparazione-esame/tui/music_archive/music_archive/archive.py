@@ -5,7 +5,7 @@ import copy
 from typeguard import typechecked
 from valid8 import validate
 
-from music_archive.domain import Song, Author
+from music_archive.domain import Song
 
 
 @typechecked
