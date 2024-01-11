@@ -8,8 +8,8 @@ class Song(models.Model):
     	'HOUSE': 'House',
     	'DANCE': 'Dance',
     }
-    author = models.CharField(max_length=100, validators=[RegexValidator(r'[A-Za-z0-9 ]*')])
-    title = models.CharField(max_length=100, validators=[RegexValidator(r'[A-Za-z0-9 ]*')])
+    author = models.CharField(max_length=100, validators=[RegexValidator(r'^[A-Za-z0-9 ]*$')])
+    title = models.CharField(max_length=100, validators=[RegexValidator(r'^[A-Za-z0-9 ]*$')])
     genre = models.CharField(max_length=10, choices=GENRE_CHOICES)
     duration_in_seconds = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(3600)])
 
