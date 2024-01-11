@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="863284c2-8352-4f8e-a942-772b27bca527" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../another_one/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../exercise_2/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercise2-2" beforeDir="false" afterPath="$PROJECT_DIR$/../exercise2-2" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,9 +16,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2ao0SSHz9yBXkheSCSs1gYV450u" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -31,7 +30,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/ilveron/UNICAL/Magistrale/Secure Software Design/secure-software-design/preparazione-esame/django/base_project",
+    "last_opened_file_path": "/home/ilveron/UNICAL/Magistrale/Secure Software Design/secure-software-design/preparazione-esame/tdd/exercise_2-1simulation",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -73,7 +72,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704969623612</updated>
-      <workItem from="1704969624616" duration="2468000" />
+      <workItem from="1704969624616" duration="3215000" />
+      <workItem from="1704982356203" duration="46000" />
     </task>
     <servers />
   </component>
