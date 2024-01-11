@@ -1,0 +1,25 @@
+'''
+Define a Django model (and possibly validators) for a movie: director, title, genre and duration.
+The director can be represented by strings of letters, numbers and spaces; the length of such
+strings doesn’t exceed 100 chars. The same restrictions apply to titles. Genres must be among DRAMA,
+COMEDY, ACTION, THRILLER, HORROR, SCI-FI, ANIMATION. The duration must be shown in hours and minutes
+when printed (eg. 2:15 for 2 hours and 15 minutes); choose the internal representation.
+'''
+
+class Movie(models.Model):
+    GENRE_CHOICES = {
+        "DRA": "Drama",
+        "COM": "Comedy",
+        "ACT": "Action",
+        "THR": "Thriller",
+        "HOR": "Horror",
+        "SCI": "Sci-fi",
+        "ANI": "Animation"
+    }
+    director = models.CharField(max_length=100, validators=[RegexValidator(r'^[A-Za-z0-9 ]*$')])
+    title = models.CharField(max_length=100, validators=[RegexValidator(r'^[A-Za-z0-9 ]*$')])
+    genre = models.CharField(max_length=10, choices=GENRE_CHOICES)
+    duration_in_minutes = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(500)])
+
+    def __str__(self):
+        return f'{self.title} by {self.director} (h{self.duration_in_minutes//60}:{self.duration_in_minutes%60:02}) - {self.genre}'

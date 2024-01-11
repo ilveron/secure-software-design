@@ -1,0 +1,25 @@
+'''
+Define a Django model (and possibly validators) for a product: name, category, price and quantity. 
+The name can be represented by strings of letters, numbers and spaces; the length of such strings doesn’t exceed 100 chars. 
+The category must be among ELECTRONICS, FASHION, HOME, BEAUTY, SPORTS, BOOKS. 
+The price must be a positive decimal number with two digits after the decimal point (eg. 19.99). 
+The quantity must be a positive integer that represents the number of items in stock.
+'''
+
+class Product(models.Model):
+    CATEGORY_CHOICES = {
+        "ELE": "Electronics",
+        "FSH": "Fashion",
+        "HOM": "Home",
+        "BTY": "Beauty",
+        "SPO": "Sports",
+        "BKS": "Books",
+    }
+
+    name = models.CharField(max_length=100, validators=[RegexValidator(r'^[A-Za-z0-9\s]*$')])
+    category = models.CharField(max_length=15, choices=CATEGORY_CHOICES)
+    price_in_cents = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100000_00)])
+    quantity = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5000)])
+
+    def __str__(self):
+        return f"{self.name}, priced: {self.price_in_cents//100}.{self.price_in_cents%100:02} (qty. {self.quantity}) - {self.category}"
