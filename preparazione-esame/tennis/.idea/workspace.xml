@@ -5,41 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f725081c-1157-49b6-a599-741ac4fac9b4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tennis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd" beforeDir="false" afterPath="$PROJECT_DIR$/../tdd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/AUTHORS.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/CONTRIBUTING.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/HISTORY.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/MANIFEST.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/README.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/calc/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/calc/calc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/calc/meteorites.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/docs/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/docs/authors.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/docs/conf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/docs/contributing.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/docs/history.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/docs/index.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/docs/installation.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/docs/make.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/docs/readme.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/docs/usage.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/punch_config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/punch_version.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/pytest.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/requirements/dev.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/requirements/prod.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/requirements/test.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/setup.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/setup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/tests/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/tests/test_calc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/tests/test_meteorites.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tdd/tox.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +36,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/ilveron/UNICAL/Magistrale/Secure Software Design/secure-software-design/preparazione-esame/tdd/exercise_2-1simulation",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -121,6 +88,8 @@
       <updated>1704907143377</updated>
       <workItem from="1704907145414" duration="48000" />
       <workItem from="1704907205058" duration="3214000" />
+      <workItem from="1704965896188" duration="422000" />
+      <workItem from="1705051425830" duration="66000" />
     </task>
     <servers />
   </component>

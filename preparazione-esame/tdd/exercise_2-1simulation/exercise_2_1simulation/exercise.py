@@ -21,14 +21,15 @@ class Base:
     create_key: dataclasses.InitVar[Any] = dataclasses.field(default=None)
 
     __create_key = object()
+    __ACCEPTED_BASES = ['deep pan', 'crispy']
+
 
     def __post_init__(self, create_key: Any):
         validate('create_key', create_key, equals=self.__create_key)
 
     @staticmethod
     def create(value: str) -> 'Base':
-        if value not in ['deep pan', 'crispy']:
-            raise ValueError()
+        validate('value', value, is_in=Base.__ACCEPTED_BASES)
         return Base(value, Base.__create_key)
 
 
@@ -56,9 +57,9 @@ class Pizza:
     def _add_topping(self, value: Topping, create_key: Any) -> None:
         validate('create_key', create_key, custom=Pizza.Builder.is_valid_key)
         if self.base == "deep pan":
-            validate('toppings_len', len(self.__toppings)+1, custom=lt(6, False))
+            validate('toppings_len', self.number_of_toppings+1, custom=lt(6, False))
         else:
-            validate('toppings_len', len(self.__toppings)+1, custom=lt(5, False))
+            validate('toppings_len', self.number_of_toppings+1, custom=lt(5, False))
         self.__toppings.append(value)
 
     @property
