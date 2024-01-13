@@ -1,0 +1,12 @@
+'''
+Given the following Django model:
+
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=50)
+    genre = models.CharField(max_length=50)
+    rating = models.FloatField()
+    
+define a view, serializer and permission class to provide unrestricted access to users in the group
+Bookworms, Critics, Librarians, and read-only access to users in the group Students, Teachers, Readers.
+'''

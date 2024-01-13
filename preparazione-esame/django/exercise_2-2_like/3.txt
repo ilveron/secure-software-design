@@ -1,0 +1,25 @@
+'''
+Define a Django model (and possibly validators) for a blog post: title, author, content, date and tags.
+The title can be represented by strings of letters, numbers and spaces; the length of such strings doesn’t exceed 200 chars.
+The author must be a ForeignKey to the User model, which represents the registered users of the blog.
+The content must be a TextField that allows any characters and symbols.
+The date must be a DateTimeField that records the date and time of the post creation.
+The tags must be a ManyToManyField to the Tag model, which represents the categories of the blog posts.
+'''
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50, validators=[RegexValidator(r'^[A-Za-z0-9\s]*$')])
+
+    def __str__(self):
+        return self.name
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=200, validators=[RegexValidator(r'^[A-Za-z0-9\s]*$')])
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    content = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    tags = models.ManyToManyField('Tag')
+
+    def __str__(self):
+        return f"{self.title} by {self.author}, {self.date}, ({[str(tag) for tag in self.tags.all()]})"

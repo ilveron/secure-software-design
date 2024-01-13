@@ -1,0 +1,12 @@
+'''
+Given the following Django model:
+
+class Movie(models.Model):
+    title = models.CharField(max_length=100)
+    director = models.CharField(max_length=50)
+    genre = models.CharField(max_length=50)
+    year = models.IntegerField()
+    
+define a view, serializer and permission class to provide unrestricted access to users in the group
+Directors, Producers, Critics, and read-only access to users in the group Actors, Fans, Students.
+'''
