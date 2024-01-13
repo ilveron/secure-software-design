@@ -10,3 +10,28 @@ class Book(models.Model):
 define a view, serializer and permission class to provide unrestricted access to users in the group
 Bookworms, Critics, Librarians, and read-only access to users in the group Students, Teachers, Readers.
 '''
+
+### views.py ###
+class BookViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsPostEditorOrReadOnly, IsAuthenticated]
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    
+### serializers.py ###
+class BookSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('id', 'title', 'author', 'genre', 'rating')
+        model = Book
+
+### permissions.py ###
+class IsPostEditorOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.user.is_superuser:
+            return True
+        if request.user.is_superuser or (request.method in permissions.SAFE_METHODS and request.user.groups.filter(name__in=['Students', 'Teachers', 'Readers']).exists()):
+            return True
+        return request.user.groups.filter(name__in=['Bookworms', 'Critics', 'Librarians']).exists()
+
+    def has_object_permission(self, request, view, obj):
+        if request.user == obj.post_editor:
+            return True
