@@ -100,7 +100,7 @@ class CoffeeOrder:
 
     @property
     def organic(self) -> bool:
-        return any("organic" in ingredient for ingredient in self.ingredients)
+        return all("organic" in ingredient for ingredient in self.ingredients)
 
     @property
     def number_of_ingredients(self) -> int:

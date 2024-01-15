@@ -90,9 +90,9 @@ def test_latte_coffee_cannot_have_more_than_4_ingredients():
 def organic_coffee_orders():
     return [
         CoffeeOrder.Builder("espresso").with_ingredient("milk (organic)").build(),
-        CoffeeOrder.Builder("espresso").with_ingredient("milk").with_ingredient("sugar (organic)").build(),
+        CoffeeOrder.Builder("espresso").with_ingredient("milk (organic)").with_ingredient("sugar (organic)").build(),
         CoffeeOrder.Builder("latte").with_ingredient("milk (organic)").build(),
-        CoffeeOrder.Builder("latte").with_ingredient("milk").with_ingredient("sugar (organic)").build()
+        CoffeeOrder.Builder("latte").with_ingredient("something (organic)").with_ingredient("some other thing (organic)").with_ingredient("totally organic (organic)").build()
     ]
 
 
@@ -100,7 +100,7 @@ def organic_coffee_orders():
 def non_organic_coffee_orders():
     return [
         CoffeeOrder.Builder("espresso").with_ingredient("milk").with_ingredient("barley").build(),
-        CoffeeOrder.Builder("latte").with_ingredient("milk").with_ingredient("chocolate").build(),
+        CoffeeOrder.Builder("latte").with_ingredient("milk").with_ingredient("chocolate (organic)").build(),
     ]
 
 
