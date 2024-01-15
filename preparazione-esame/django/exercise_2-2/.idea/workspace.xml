@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="863284c2-8352-4f8e-a942-772b27bca527" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../base_project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../base_project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base_project/app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../base_project/app/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base_project/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../base_project/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base_project/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../base_project/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tdd/new-tdd-project-with-poetry.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../tdd/new-tdd-project-with-poetry.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +44,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/ilveron/UNICAL/Magistrale/Secure Software Design/secure-software-design/preparazione-esame/django/exercise_2-2",
+    "last_opened_file_path": "/home/ilveron/UNICAL/Magistrale/Secure Software Design/secure-software-design/preparazione-esame/tdd/exercise_2-1simulation_alt2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -191,6 +188,7 @@
       <workItem from="1704982356203" duration="46000" />
       <workItem from="1705082185356" duration="609000" />
       <workItem from="1705139525141" duration="4831000" />
+      <workItem from="1705311107105" duration="14000" />
     </task>
     <servers />
   </component>

@@ -1,11 +1,11 @@
+import dataclasses
 import re
 from typing import List, Optional, Any, Callable
 
 from dataclass_type_validator import dataclass_type_validator, TypeValidationError
 from typeguard import typechecked
-from dataclasses import dataclass, field, InitVar
-from valid8 import validate
-from valid8.validation_lib import lt, gt
+from dataclasses import *
+from valid8 import *
 
 
 def validate_dataclass(data):
@@ -32,8 +32,8 @@ class Base:
     value: str
     create_key: InitVar[Any] = field(default=None)
 
+    __ACCEPTED_BASES = ["espresso", "latte"]
     __create_key = object()
-    __ACCEPTED_BASES = ["lettuce", "spinach"]
 
     def __post_init__(self, create_key: Any):
         validate('create_key', create_key, equals=self.__create_key)
@@ -52,7 +52,7 @@ class Ingredient:
     create_key: InitVar[Any] = field(default=None)
 
     __create_key = object()
-    __parse_pattern = r'^[A-Za-z][A-Za-z ]*( \(gluten\))?$'
+    __parse_pattern = r'^[A-Za-z][A-Za-z ]*( \(organic\))?$'
 
     def __post_init__(self, create_key: Any):
         validate('create_key', create_key, equals=self.__create_key)
@@ -61,34 +61,33 @@ class Ingredient:
     @staticmethod
     def create(value: str) -> 'Ingredient':
         sanitized_value = Ingredient.__sanitize_ingredient(value)
-        if '(gluten)' in sanitized_value:
-            validate('sanitized_value', sanitized_value, min_len=4+len(' (gluten)'), max_len=50+len(' (gluten)'))
+        if '(organic)' in sanitized_value:
+            validate('sanitized_value', sanitized_value, min_len=3 + len(' (organic)'), max_len=40 + len(' (organic)'))
         else:
-            validate('sanitized_value', sanitized_value, min_len=4, max_len=50)
+            validate('sanitized_value', sanitized_value, min_len=3, max_len=40)
         validate('sanitized_value', sanitized_value, custom=pattern(Ingredient.__parse_pattern))
         return Ingredient(sanitized_value, Ingredient.__create_key)
 
     @staticmethod
-    def __sanitize_ingredient(value: str) -> str:
-        with_fixed_gluten_info = re.sub(r'(.)\(\s*gluten\s*\)', r'\1 (gluten)', value)
-        without_extra_spaces = " ".join(re.split(r' +', with_fixed_gluten_info)).strip()
-        return without_extra_spaces
+    def __sanitize_ingredient(ingredient: str) -> str:
+        with_fixed_organic_info = re.sub(r'(.)\(\s*organic\s*\)', r'\1 (organic)', ingredient)
+        return " ".join(re.split(r' +', with_fixed_organic_info)).strip()
 
 
 @typechecked
 @dataclass(frozen=True)
-class Salad:
+class CoffeeOrder:
     __base: Base
     __ingredients: List[Ingredient] = field(default_factory=list, repr=False, init=False)
 
     create_key: InitVar[Any] = field(default=None)
 
     def __post_init__(self, create_key: Any):
-        validate('create_key', create_key, custom=Salad.Builder.is_valid_key)
+        # is_valid_key
         validate_dataclass(self)
 
     def _add_ingredient(self, ingredient: Ingredient, create_key: Any):
-        validate('create_key', create_key, custom=Salad.Builder.is_valid_key)
+        validate('create_key', create_key, custom=CoffeeOrder.Builder.is_valid_key)
         self.__ingredients.append(ingredient)
 
     @property
@@ -97,37 +96,37 @@ class Salad:
 
     @property
     def ingredients(self) -> List[str]:
-        return [i.value for i in self.__ingredients]
+        return [ingredient.value for ingredient in self.__ingredients]
 
     @property
-    def gluten_free(self) -> bool:
-        return all("(gluten)" not in i for i in self.ingredients)
+    def organic(self) -> bool:
+        return any("organic" in ingredient for ingredient in self.ingredients)
 
     @property
-    def number_of_ingredients(self):
+    def number_of_ingredients(self) -> int:
         return len(self.ingredients)
 
     class Builder:
-        __instance: Optional['Salad'] = field(default=None)
-        __create_key = object()
+        __instance: Optional['CoffeeOrder'] = dataclasses.field(default=None)
         __built = False
+        __create_key = object()
 
         def __init__(self, base: str):
-            self.__instance = Salad(Base.create(base), self.__create_key)
+            self.__instance = CoffeeOrder(Base.create(base), self.__create_key)
 
         @staticmethod
         def is_valid_key(key: Any) -> bool:
-            return key == Salad.Builder.__create_key
+            return key == CoffeeOrder.Builder.__create_key
 
-        def with_ingredient(self, ingredient: str) -> 'Salad.Builder':
-            self.__instance._add_ingredient(Ingredient.create(ingredient), Salad.Builder.__create_key)
+        def with_ingredient(self, ingredient: str) -> 'CoffeeOrder.Builder':
+            self.__instance._add_ingredient(Ingredient.create(ingredient), self.__create_key)
             return self
 
-        def build(self) -> 'Salad':
+        def build(self) -> 'CoffeeOrder':
             validate('built', self.__built, equals=False)
             self.__built = True
-            if self.__instance.base == "lettuce":
-                validate('number_of_ingredients', self.__instance.number_of_ingredients, custom=[lt(5, False), gt(0, True)])
-            else:  # spinach
-                validate('number_of_ingredients', self.__instance.number_of_ingredients, custom=[lt(4, False), gt(0, True)])
+            if self.__instance.base == "espresso":
+                validate('number_of_ingredients', self.__instance.number_of_ingredients, min_value=1, max_value=3)
+            else:  # it is a latte
+                validate('number_of_ingredients', self.__instance.number_of_ingredients, min_value=1, max_value=4)
             return self.__instance
