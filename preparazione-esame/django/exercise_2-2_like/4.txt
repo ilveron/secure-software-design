@@ -1,0 +1,40 @@
+'''
+Define a Django model (and possibly validators) for a recipe: author, title, category and ingredients.
+The author can be represented by strings of letters and spaces (but it shall start with a letter).
+The title can be represented by strings of letters, numbers and spaces (but it shall start with a letter or a number). 
+The length of such strings doesn’t exceed 100 chars.
+Categories must be among APPETIZER, FIRST COURSE, SECOND COURSE, SIDE DISH, DESSERT, BEVERAGE.
+The ingredients must be a list of strings separated by commas (only letters); choose the internal representation.
+'''
+
+class Ingredient(models.Model):
+    name = models.CharField(max_length=50, validators=[RegexValidator(r'^[A-Za-z]+$')])
+
+    def __str__(self):
+        return str(self.name)
+
+
+class Recipe(models.Model):
+    CATEGORY_CHOICES = {
+        "APPETIZER": "Appetizer",
+        "FIRST COURSE": "First Course",
+        "SECOND COURSE": "Second Course",
+        "SIDE DISH": "Side Dish",
+        "DESSERT": "Dessert",
+        "BEVERAGE": "Beverage"
+    }
+    author = models.CharField(max_length=100, validators=[RegexValidator(r'^[A-Za-z][A-Za-z ]*$')])
+    title = models.CharField(max_length=100, validators=[RegexValidator(r'^[A-Za-z0-9][A-Za-z0-9 ]*$')])
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    ingredients = models.ManyToManyField('Ingredient')
+
+    def __str__(self):
+        return f"{self.title} by {self.author} ({self.category}). Ingredients: ({self.__get_ingredients_str__()})"
+
+    def __get_ingredients_str__(self):
+        to_return = ""
+        for i in self.ingredients.all():
+            to_return += f"{str(i)}, "
+
+        return to_return[:-2]
+
