@@ -106,6 +106,8 @@ class CoffeeOrder:
     def number_of_ingredients(self) -> int:
         return len(self.ingredients)
 
+    @typechecked
+    @dataclass
     class Builder:
         __instance: Optional['CoffeeOrder'] = dataclasses.field(default=None)
         __built = False
@@ -124,9 +126,9 @@ class CoffeeOrder:
 
         def build(self) -> 'CoffeeOrder':
             validate('built', self.__built, equals=False)
-            self.__built = True
             if self.__instance.base == "espresso":
                 validate('number_of_ingredients', self.__instance.number_of_ingredients, min_value=1, max_value=3)
             else:  # it is a latte
                 validate('number_of_ingredients', self.__instance.number_of_ingredients, min_value=1, max_value=4)
+            self.__built = True
             return self.__instance

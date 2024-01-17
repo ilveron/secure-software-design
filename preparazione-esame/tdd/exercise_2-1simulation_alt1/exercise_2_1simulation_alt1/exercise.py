@@ -107,6 +107,8 @@ class Salad:
     def number_of_ingredients(self):
         return len(self.ingredients)
 
+    @typechecked
+    @dataclass
     class Builder:
         __instance: Optional['Salad'] = field(default=None)
         __create_key = object()
@@ -125,9 +127,9 @@ class Salad:
 
         def build(self) -> 'Salad':
             validate('built', self.__built, equals=False)
-            self.__built = True
             if self.__instance.base == "lettuce":
                 validate('number_of_ingredients', self.__instance.number_of_ingredients, custom=[lt(5, False), gt(0, True)])
             else:  # spinach
                 validate('number_of_ingredients', self.__instance.number_of_ingredients, custom=[lt(4, False), gt(0, True)])
+            self.__built = True
             return self.__instance

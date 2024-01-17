@@ -1,0 +1,131 @@
+'''
+You are assigned the task of designing a system for configuring cars with specific features. Follow the specifications below:
+
+ - A car configuration consists of a model name, an engine type, and optional features.
+ - The engine type can be one of the following: "electric," "hybrid," "gasoline," or "diesel."
+ - Each car can have additional features, such as "sunroof," "leather seats," or "navigation system."
+ 	- A feature is a string which starts with a letter and continues with a letters and whitespaces
+ - The model name is a string with a length between 5 and 50 characters.
+ 	- A feature is a string which starts with a letter or a number and continues with a letters, numbers and whitespaces
+ - For a car to be built it is needed to have between 3 and 10 features, one of which shall be "chassis". 
+ - Once a car configuration instance is created, its attributes cannot be modified.
+ - If a car has a sunroof in its features, you want to advertise it.
+
+You are provided with a legacy implementation of CarConfiguration and CarConfiguration.Builder. Your task is to ensure retrocompatibility while adding the new constraints.
+'''
+
+
+import dataclasses
+from typing import List, Optional
+
+import typeguard as typeguard
+
+@typeguard.typechecked
+@dataclasses.dataclass
+class CarConfiguration:
+    model_name: str
+    engine_type: str
+    features: List[str]
+    has_sunroof: bool  # New property
+    
+    class Builder:
+        instance: Optional['CarConfiguration'] = dataclasses.field(default=None)
+
+        def __init__(self, model_name: str, engine_type: str):
+            self.instance = CarConfiguration(model_name, engine_type, [], False)  # Initialize has_sunroof to False
+
+        def with_feature(self, feature: str) -> 'CarConfiguration.Builder':
+            self.instance.features.append(feature)
+            # Update has_sunroof based on the presence of the "sunroof" feature
+            self.instance.has_sunroof = "sunroof" in self.instance.features
+            return self
+
+        def build(self) -> 'CarConfiguration':
+            return self.instance
+            
+            
+import pytest
+
+from somewhere import CarConfiguration
+
+
+@pytest.fixture(scope="module")
+def features_fixture():
+    return ["chassis", "tint windows", "alloy wheels", "led headlights", "air conditioning", "android infotainment"]
+
+
+def test_car_configuration_init_is_reserved():
+    with pytest.raises(TypeError):
+        CarConfiguration("ModelX", "electric", [], False)
+
+
+def test_car_model_name_length():
+    with pytest.raises(ValueError):
+        CarConfiguration.Builder("AAAs", "diesel").build()
+    with pytest.raises(ValueError):
+        CarConfiguration.Builder("A" * 51, "electric").build()
+
+
+def test_car_model_regex():
+    with pytest.raises(ValueError):
+        CarConfiguration.Builder("@@@@not ok", "diesel")
+    with pytest.raises(ValueError):
+        CarConfiguration.Builder("!not ok", "diesel")
+
+    car = CarConfiguration.Builder("1this is ok", "diesel").with_feature("one").with_feature("two").with_feature("chassis").build()
+    assert car.model_name == "1this is ok"
+
+
+def test_car_model_extra_spaces_are_sanified():
+    car = CarConfiguration.Builder("        why  these          spaces  ", "diesel").with_feature("one").with_feature("two").with_feature("chassis").build()
+    assert car.model_name == "why these spaces"
+
+
+def test_car_engine_type():
+    for engine_type in ("electric", "hybrid", "gasoline", "diesel"):
+        assert (CarConfiguration.Builder("ModelX", engine_type)
+                .with_feature("one")
+                .with_feature("two")
+                .with_feature("chassis")
+                .build()
+                .engine_type == engine_type)
+
+
+def test_car_features(features_fixture):
+    builder = CarConfiguration.Builder("Focus", "gasoline")
+    for f in features_fixture:
+        builder.with_feature(f)
+    built_car = builder.build()
+    for f in features_fixture:
+        assert f in built_car.features
+
+
+def test_car_has_no_sunroof_property(features_fixture):
+    builder = CarConfiguration.Builder("ModelX", "electric")
+    builder.with_feature(features_fixture[0]).with_feature(features_fixture[1]).with_feature(features_fixture[2])
+    assert not builder.build().has_sunroof
+
+
+def test_car_has_sunroof_property(features_fixture):
+    builder = CarConfiguration.Builder("ModelX", "electric")
+    builder.with_feature(features_fixture[0]).with_feature(features_fixture[1]).with_feature("sunroof")
+    assert builder.build().has_sunroof  # Feature added
+
+
+def test_car_with_no_chassis_cant_be_built(features_fixture):
+    builder = CarConfiguration.Builder("California", "gasoline")
+    for f in features_fixture[1:]:
+        builder.with_feature(f)
+    with pytest.raises(ValueError):
+        builder.build()
+    builder.with_feature("chassis")
+    assert builder.build().engine_type == "gasoline"  # it eventually gets built
+
+
+def test_car_feature_length():
+    builder = CarConfiguration.Builder("911 RS", "gasoline")
+    builder.with_feature("one").with_feature("two").with_feature("three")
+    with pytest.raises(ValueError):
+        builder.with_feature("A" * 51)
+    with pytest.raises(ValueError):
+        builder.with_feature("A")

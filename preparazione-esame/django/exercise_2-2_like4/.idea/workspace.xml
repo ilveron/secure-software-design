@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="863284c2-8352-4f8e-a942-772b27bca527" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../exercise_2-2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../exercise_2-2/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="863284c2-8352-4f8e-a942-772b27bca527" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +42,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/ilveron/UNICAL/Magistrale/Primo Anno/Secure Software Design/secure-software-design/preparazione-esame/django/exercise_2-2_like4",
+    "last_opened_file_path": "/home/ilveron/UNICAL/Magistrale/Primo Anno/Secure Software Design/secure-software-design/preparazione-esame/tdd/exercise_2-1simulation_alt3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -191,6 +189,7 @@
       <workItem from="1705311107105" duration="14000" />
       <workItem from="1705442782503" duration="12000" />
       <workItem from="1705442831695" duration="2519000" />
+      <workItem from="1705482723590" duration="16000" />
     </task>
     <servers />
   </component>
