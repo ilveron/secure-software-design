@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="863284c2-8352-4f8e-a942-772b27bca527" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercise_2-3_like/2-3_like3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../exercise_2-3_like/2-3_like3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercise_2-3_like/2-3_like3/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../exercise_2-3_like/2-3_like3/app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercise_2-3_like/2-3_like3/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../exercise_2-3_like/2-3_like3/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +32,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/ilveron/UNICAL/Magistrale/Secure Software Design/secure-software-design/preparazione-esame/django/exercise_2-2",
+    "last_opened_file_path": "/home/ilveron/UNICAL/Magistrale/Primo Anno/Secure Software Design/secure-software-design/preparazione-esame/other-stuff/tests-with-dataclasses-and-typechecked",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -88,6 +87,7 @@
       <workItem from="1704982356203" duration="46000" />
       <workItem from="1705082185356" duration="609000" />
       <workItem from="1705139343656" duration="181000" />
+      <workItem from="1705505265215" duration="9000" />
     </task>
     <servers />
   </component>

@@ -147,6 +147,7 @@ class CarConfiguration:
             return key == CarConfiguration.Builder.__create_key
 
         def with_feature(self, feature: str) -> 'CarConfiguration.Builder':
+            validate('number_of_features', self.__instance.number_of_features, max_value=9)
             self.__instance._add_feature(Feature.create(feature), CarConfiguration.Builder.__create_key)
             return self
 

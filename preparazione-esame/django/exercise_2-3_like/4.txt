@@ -1,0 +1,34 @@
+'''
+Given the following Django model:
+
+class VideoGame(models.Model):
+    title = models.CharField(max_length=100)
+    developer = models.CharField(max_length=50)
+    genre = models.CharField(max_length=50)
+    rating = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
+
+Define a view, serializer, and permission class to provide unrestricted access to users in the group
+Developers, Producers, Critics, and read-only access to users in the group Students, Teachers, Players.
+'''
+
+### views.py ###
+class VideoGameViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsPostEditorOrReadOnly, IsAuthenticated]
+    queryset = VideoGame.objects.all()
+    serializer_class = VideoGameSerializer
+    
+    
+### serializers.py ###
+class VideoGameSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('id', 'title', 'developer', 'genre', 'rating')
+        model = VideoGame
+
+
+### permissions.py ###
+class IsPostEditorOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.user.is_superuser or (request.method in permissions.SAFE_METHODS and
+                                     request.user.groups.filter(name__in=["Students", "Teachers", "Players"])):
+            return True
+        return request.user.groups.filter(name__in=["Developers", "Producers", "Critics"])

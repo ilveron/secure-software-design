@@ -1,0 +1,149 @@
+3. MISCELLANEOUS
+
+	- In DDD, every concept of the domain should be represented by a class? -> yes
+
+	- List the good code principles -> 
+		DRY (Don't Repeat Yourself), 
+		Comments when needed, 
+		Fail fast,
+		Avoid magic numbers,
+		One purpose for each variable,
+		Use good names,
+		Avoid global variables,
+		Use whitespace to help the reader,
+		Methods should return results (not print them)
+
+	- Which are the differences between static, dynamic and no checking
+	
+
+
+4. DDD 
+
+	- Main principles of DDD are?
+		- Focuses on the domain
+		- Collaborations with domain experts
+		- Uses an OMNIPRESENT LANGUAGE limited to a specific context 
+		- DOMAIN MODELS -> Value objects, entities, aggregates
+		
+	- ENTITY
+		- has an IMMUTABLE identity represented by an ID
+		- can contain: other entities, value objects
+		- entity1 == entity2 iff ID1 == ID2
+		
+	- VALUE OBJECT
+		- has no identity
+		- defined by its value
+		- immutable
+		- can refer entities (but cannot own them)
+		- contained in: entities, value objects
+		
+	- AGGREGATE
+		- global identity
+		- made of:
+			- a boundary
+			- a root (referred outside)
+		- invariants are EVENTUALLY CONSISTENT (Can be unconsistent during the creations, cut must become consistent at the end of the creation process)
+		- obj contained into an aggregate can refer to other external obj's aggregate root
+		
+		
+		
+5. CODE CONSTRUCTS PROMOTING SECURITY
+
+	- what does IMMUTABILITY solve? Integrity and avaliability issues
+	- what does FAIL FAST solve? Irregual input and state issues
+	- what does VALIDATION solve? avoids input whic does not conform to some specifications
+	
+	- what kind of problem is the following: 'long waiting lines and poor efficiency' 	-> availability
+	- what kind of problem is the following: 'orders timeout at checkout' 			-> availability
+	- what kind of problem is the following: 'inconsistent payment methods' 		-> integrity
+	
+	- Defining contracts:
+		- public methods -> yes
+		- private methods -> no
+		- package -> yes if big, no otherwise 
+	
+	- validation order:
+		1) origin
+			- prenvent DoS and DDoS
+			- checking IP is dangerous because of spoofing
+		2) size
+		3) lexical - syntax
+		4) semantic (done by entities)
+		
+		
+		
+6. DOMAIN PRIMITIVES (== value objects)
+	
+	- if a domain primitive instance exists, we can give for granted tha it's valid (so the invariants hold)
+	
+
+	
+
+7. ENSURING INTEGRITY OF STATE
+
+	- don't mix two or more methods to ensure integrity of state: choose only one
+	
+	- fluent interface:
+		- returns a reference to the obj itself
+		- no command-query separation principle
+		- eases readibility
+		
+	- builder:
+		- aim: obtain a complex object and make other entities access it once it's completed
+		- Builder's constructor -> mandatory fields
+		- Builder's method with... -> optional fields
+		- the fluent interface is WELL SUITED
+		- method .build() checks invariants -> returns the object only if the checks pass
+		
+	- sharing collections:
+		- do not return a reference (they aremutable objects)
+		- return a deep copy (very expensive)
+		- return a read-only proxy (shallow copy) -> you cannot modify it bc it's read-only -> it's safe
+		
+		
+
+8. REDUCING COMPLEXITY OF STATE
+
+	- PARTIALLY IMMUTABLE ENTITIES
+		- make immutable everything that is not expected to change
+		
+	- ENTITY STATE OBJECTS (single thread environments)
+		- create an obj for each state an entity could be in
+		- update the entity's state by assigning a new state object
+		
+	- ENTITY SNAPSHOT  (multi thread environments)
+		- immutable objects
+		- state changes must be managed by another class (encapluation is violated)
+		- requires synchronization only on creation
+		
+	- ENTITY RELAY
+		- group state into phases: each phase is represented by one of these objects
+		
+
+
+9. HANDLING FAILURES SECURELY
+
+	- separate technical exc. from business (domain) exc.
+	- use excepton to control the program flow is odd
+	- define Result objects (they contain the outcome of a certain operation)
+	- CIRCUIT BREAKER:
+		- open cuircuit -> accept requests
+		- count denied requests
+		- once the threshold is reached -> open the circuit
+		- timeout
+		- once timeout is reached, half open the circuit
+		- if you can handle the incoming requests, close the circuit and restart
+		- if you can't, open the circuit and restart
+			
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

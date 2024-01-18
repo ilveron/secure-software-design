@@ -1,0 +1,22 @@
+'''
+Define a Django model (and possibly validators) for a train ticket: departure, destination, date, time and price. 
+The departure and destination can be represented by strings of letters, numbers and spaces; the length of such strings doesn’t exceed 100 chars. 
+The date must be shown in the format DD/MM/YYYY when printed (eg. 17/01/2024 for 17 January 2024); choose the internal representation. 
+The time must be shown in the format HH:MM when printed (eg. 22:31 for 10:31 PM); choose the internal representation.
+The price must be shown as a decimal number with two digits after the decimal point when printed (eg. 12.50 for 12 euros and 50 cents); choose the internal representation.
+'''
+
+def date_time_is_in_the_future(value):
+    if value < timezone.now():
+        raise ValidationError('Date and time must be in the future.')
+
+
+# Create your models here.
+class TrainTicket(models.Model):
+    departure = models.CharField(max_length=100, validators=[RegexValidator(r'^[A-Za-z0-9 ]+$')])
+    destination = models.CharField(max_length=100, validators=[RegexValidator(r'^[A-Za-z0-9 ]+$')])
+    date_time = models.DateTimeField(validators=[date_time_is_in_the_future])
+    price_in_cents = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(999999_99)])
+
+    def __str__(self):
+        return f"{self.departure} -> {self.destination} leaves at {self.date_time.hour:02}:{self.date_time.minute:02} of {self.date_time.day:02}/{self.date_time.month:02}/{self.date_time.year:04}. Price: {self.price_in_cents//100}.{self.price_in_cents%100:02}"

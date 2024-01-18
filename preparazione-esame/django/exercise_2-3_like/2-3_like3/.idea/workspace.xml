@@ -35,7 +35,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/ilveron/UNICAL/Magistrale/Secure Software Design/secure-software-design/preparazione-esame/tdd/exercise_2-1simulation_alt2",
+    "last_opened_file_path": "/home/ilveron/UNICAL/Magistrale/Primo Anno/Secure Software Design/secure-software-design/preparazione-esame/other-stuff/tests-with-dataclasses-and-typechecked",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -93,6 +93,7 @@
       <workItem from="1705157868860" duration="4151000" />
       <workItem from="1705165720127" duration="552000" />
       <workItem from="1705316466760" duration="2443000" />
+      <workItem from="1705492074662" duration="2590000" />
     </task>
     <servers />
   </component>

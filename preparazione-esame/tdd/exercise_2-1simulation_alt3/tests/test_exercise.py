@@ -99,6 +99,14 @@ def test_car_feature_extra_spaces_are_sanified():
     assert "what am i doing" in car.features
 
 
+def test_cant_add_more_than_ten_features():
+    builder = CarConfiguration.Builder("Uno Turbo", "gasoline")
+    for i in range(10):
+        builder.with_feature(f"feature")
+    with pytest.raises(ValueError):
+        builder.with_feature("one more").build()
+
+
 def test_car_builder_does_not_leak_instance():
     with pytest.raises(AttributeError):
         _ = CarConfiguration.Builder("ModelX", "electric").instance

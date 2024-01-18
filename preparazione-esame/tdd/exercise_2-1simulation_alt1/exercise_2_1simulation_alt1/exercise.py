@@ -133,3 +133,10 @@ class Salad:
                 validate('number_of_ingredients', self.__instance.number_of_ingredients, custom=[lt(4, False), gt(0, True)])
             self.__built = True
             return self.__instance
+
+
+# Yes, this is a problem you could address, but whatever.
+# a_salad = Salad.Builder("lettuce").with_ingredient("tomato").with_ingredient("cucumber").build()
+# print(a_salad.ingredients)
+# a_salad._Salad__ingredients.append(Ingredient.create("couscous (gluten)"))
+# print(a_salad.ingredients)  # now couscous is in the salad, even though the field was """private"""
